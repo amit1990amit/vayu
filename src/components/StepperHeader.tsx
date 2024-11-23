@@ -3,7 +3,7 @@ import { Stepper, Step, StepLabel } from "@mui/material";
 
 type StepperHeaderProps = {
   activeStep: number;
-  steps: { label: string }[];
+  steps: { label: string, id: string }[];
 };
 
 const StepperHeader = (props: StepperHeaderProps) => {
@@ -11,8 +11,8 @@ const StepperHeader = (props: StepperHeaderProps) => {
 
   return (
     <Stepper activeStep={activeStep}>
-      {steps.map((step, index) => (
-        <Step key={index}>
+      {steps.map((step) => (
+        <Step key={step.id}>
           <StepLabel>{step.label}</StepLabel>
         </Step>
       ))}

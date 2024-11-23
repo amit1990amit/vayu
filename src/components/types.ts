@@ -5,6 +5,7 @@ type FormData = {
 }
 
 type StepProps = {
+  id: string;
   label: string;
   component: React.ComponentType<any>;
   isValid: (formData: FormData) => boolean
