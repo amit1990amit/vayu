@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Box } from "@mui/material";
 
-interface StepOneProps {
+type StepOneProps = {
   data: { firstName: string; lastName: string };
   onUpdate: (data: { firstName: string; lastName: string }) => void;
 }

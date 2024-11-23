@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 
-interface StepThreeProps {
+type StepThreeProps = {
   data: { firstName?: string; lastName?: string; age?: string };
 }
 
