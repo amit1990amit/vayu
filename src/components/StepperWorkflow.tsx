@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { Stepper, Step, StepLabel, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { StepperWorkflowProps, FormData } from "./types";
 import StepperNavigation from './StepperNavigation'
+import CurrentStepRenderer from './CurrentStepRenderer'
+import StepperHeader from './StepperHeader'
 
 const StepperWorkflow = (props: StepperWorkflowProps) => {
   const { steps, onFinish } = props
@@ -29,16 +31,12 @@ const StepperWorkflow = (props: StepperWorkflowProps) => {
 
   return (
     <Box>
-      <Stepper activeStep={activeStep}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <Box my={2}>
-        <currentStep.component data={formData} onUpdate={updateData} />
-      </Box>
+      <StepperHeader activeStep={activeStep} steps={steps} />
+      <CurrentStepRenderer
+        component={currentStep.component}
+        data={formData}
+        onUpdate={updateData}
+      />
       <StepperNavigation
         activeStep={activeStep}
         totalSteps={steps.length}
