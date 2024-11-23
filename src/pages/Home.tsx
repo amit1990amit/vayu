@@ -10,9 +10,19 @@ const Home = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Open Stepper
-      </Button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height:100,
+          }
+      }>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Stepper
+        </Button>
+      </div>
+
       <ModalContainer open={open} onClose={() => setOpen(false)}>
        <StepperWorkflow
         steps={steps}

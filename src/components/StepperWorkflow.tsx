@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
+import React, { useCallback, useState } from "react";
+import { Stepper, Step, StepLabel, Box } from "@mui/material";
 import { StepperWorkflowProps, FormData } from "./types";
+import StepperNavigation from './StepperNavigation'
 
-const StepperWorkflow: React.FC<StepperWorkflowProps> = (props) => {
+const StepperWorkflow = (props: StepperWorkflowProps) => {
   const { steps, onFinish } = props
   
   const [activeStep, setActiveStep] = useState(0);
@@ -12,12 +13,12 @@ const StepperWorkflow: React.FC<StepperWorkflowProps> = (props) => {
     age: "",
   });
 
-  const handleNext = () => setActiveStep((prev) => prev + 1);
-  const handleBack = () => setActiveStep((prev) => prev - 1);
-  const handleFinish = () => {
+  const handleNext = useCallback(() => setActiveStep((prev) => prev + 1), []);
+  const handleBack = useCallback(() => setActiveStep((prev) => prev - 1),[]);
+  const handleFinish = useCallback(() => {
     onFinish(formData);
     alert("Data saved!");
-  };
+  }, [onFinish, formData]);
 
   const updateData = (newData: any) => {
     setFormData((prevData: FormData) => ({ ...prevData, ...newData }));
@@ -38,20 +39,14 @@ const StepperWorkflow: React.FC<StepperWorkflowProps> = (props) => {
       <Box my={2}>
         <currentStep.component data={formData} onUpdate={updateData} />
       </Box>
-      <Box display="flex" justifyContent="space-between" mt={2}>
-        <Button disabled={activeStep === 0} onClick={handleBack}>
-          Back
-        </Button>
-        {activeStep === steps.length - 1 ? (
-          <Button variant="contained" onClick={handleFinish}>
-            Finish
-          </Button>
-        ) : (
-          <Button variant="contained" disabled={!isStepValid} onClick={handleNext}>
-            Next
-          </Button>
-        )}
-      </Box>
+      <StepperNavigation
+        activeStep={activeStep}
+        totalSteps={steps.length}
+        isStepValid={isStepValid}
+        onBack={handleBack}
+        onNext={handleNext}
+        onFinish={handleFinish}
+      />
     </Box>
   );
 };
