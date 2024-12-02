@@ -1,7 +1,5 @@
 import React from "react";
-import StepOne from "./StepOne";
-import StepTwo from "./StepTwo";
-import StepThree from "./StepThree";
+
 import { StepProps } from '../types'
 
 
@@ -10,19 +8,58 @@ const steps: StepProps[] = [
   {
     id: 'step-1',
     label: "Personal Info",
-    component: StepOne,
+    fields: [
+      {
+        id: "firstName",
+        fieldType: "text",
+        placeholder: "Enter your first name",
+        type: "text",
+      },
+      {
+        id: "lastName",
+        fieldType: "text",
+        placeholder: "Enter your last name",
+        type: "text",
+      },
+    ],
     isValid: (formData) => !!formData.firstName && !!formData.lastName,
   },
   {
     id: 'step-2',
     label: "Age Info",
-    component: StepTwo,
+    fields: [
+      {
+        id: "age",
+        fieldType: "text",
+        placeholder: "Enter your age",
+        type: "number",
+      },
+    ],
     isValid: (formData) => !!formData.age && !isNaN(Number(formData.age)),
   },
   {
     id: 'step-3',
     label: "Review",
-    component: StepThree,
+    fields: [
+      {
+        id: "firstName",
+        fieldType: "text",
+        placeholder: "Enter your first name",
+        type: "text",
+      },
+      {
+        id: "lastName",
+        fieldType: "text",
+        placeholder: "Enter your last name",
+        type: "text",
+      },
+      {
+        id: "age",
+        fieldType: "text",
+        placeholder: "Enter your age",
+        type: "number",
+      },
+    ],
     isValid: () => true,
   },
 ];

@@ -23,9 +23,9 @@ const StepperWorkflow = (props: StepperWorkflowProps) => {
     <Box>
       <StepperHeader activeStep={activeStep} steps={steps} />
       <CurrentStepRenderer
-        component={currentStep.component}
         data={formData}
         onUpdate={updateData}
+        fields={currentStep.fields}
       />
       <StepperNavigation
         activeStep={activeStep}

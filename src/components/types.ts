@@ -4,19 +4,26 @@ type FormData = {
   age?: string;
 }
 
+export interface FieldProps {
+  id: string;
+  fieldType: string;
+  placeholder?: string;
+  defaultValue?: string;
+  type?: string;
+  isRequired?: boolean;
+}
+
 type StepProps = {
   id: string;
   label: string;
-  component: React.ComponentType<any>;
-  isValid: (formData: FormData) => boolean
+  isValid: (formData: FormData) => boolean;
+  fields: FieldProps[];
 }
 
 type StepperWorkflowProps = {
   steps: StepProps[];
   onFinish: (data: any) => void;
 }
-
-
 
 export type {
   StepProps,
